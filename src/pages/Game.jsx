@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { io } from "socket.io-client";
 import Webcam from "react-webcam";
 import { addFollower, addNew, addTempFollower } from '../redux/slices/followerSlice';
+import { resetCurrent, resetQuestions } from '../redux/slices/questionSlice';
 
 
 export default function Game(props) {
@@ -42,6 +43,8 @@ export default function Game(props) {
     const nav = useNavigate();
 
     function handelConfig(){
+        dis(resetCurrent());
+        dis(resetQuestions());
         nav("/manage")
     }
     function handelCount(){

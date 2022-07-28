@@ -62,6 +62,9 @@ export default function Manage() {
             .then((res)=>{dis(getQuestions(res.data.data)) ; nav("/game")})
             .catch((err)=>{console.log(err)})
         }
+        else{
+            nav("/game");
+        }
     }
   return (
     <div className="container p-0 fluid min-vh-100 d-flex flex-column align-items-center  flex-wrap" style={{backgroundColor:"#122641"}}>

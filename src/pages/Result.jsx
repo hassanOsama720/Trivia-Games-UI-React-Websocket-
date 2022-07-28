@@ -17,6 +17,8 @@ export default function Result() {
     const dis = useDispatch()
     const nav = useNavigate();
     function handelConfig(){
+        dis(resetCurrent());
+        dis(resetQuestions());
         nav("/manage")
     }
 
