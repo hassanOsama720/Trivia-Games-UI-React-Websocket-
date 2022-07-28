@@ -84,10 +84,12 @@ export default function Manage() {
                     <h5 style={{color:"#617C95"}}>Que.Time</h5>
                     <TextField value={config.time} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,time:+e.target.value})}} />
                 </div>
+                {config.storedQue?
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h6 style={{color:"#617C95"}}>No of questions</h6>
                     <TextField value={config.num} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,num:+e.target.value})}} />
-                </div>
+                </div> : <div></div>
+                }
                 
                     <FormControlLabel
                         control={<Switch color="primary"  onChange={(e)=>{setConfig({...config,camera:e.target.checked})}} />}
