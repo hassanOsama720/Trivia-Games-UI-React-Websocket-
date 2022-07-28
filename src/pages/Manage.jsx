@@ -59,11 +59,11 @@ export default function Manage() {
                 }
               }
             axios.get(`https://trivia1-api.herokuapp.com/questions/${config.num}`,configs)
-            .then((res)=>{dis(getQuestions(res.data.data)) ; nav("/game")})
+            .then((res)=>{dis(getQuestions(res.data.data)) ; nav("/start")})
             .catch((err)=>{console.log(err)})
         }
         else{
-            nav("/game");
+            nav("/start");
         }
     }
   return (
