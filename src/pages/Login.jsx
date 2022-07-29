@@ -26,7 +26,7 @@ export default function Login() {
                 .then((res)=>{
                     setPopup(<Alert severity="success">Login Success</Alert>)
                     setCookie("user",{token:res.data.accessToken , name:res.data.name},{maxAge:(3600*12)})
-                    setTimeout(()=>{nav('/manage')},1000)
+                    setTimeout(()=>{nav('/games')},1000)
 
                 })
                 .catch((err)=>{

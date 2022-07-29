@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Manage from './pages/Manage';
 import Start from './pages/Start';
+import Games from './pages/Games';
 import Game from './pages/Game';
 import Result from './pages/Result';
 import { io } from "socket.io-client";
@@ -32,6 +33,7 @@ function App() {
        <Route path="login" element={<Login />} />
        <Route path="manage" element={<ProtectedRoute component={Manage}/>} />
        <Route path="start" element={<ProtectedRoute component={Start}/>} />
+       <Route path="games" element={<ProtectedRoute component={Games}/>} />
        <Route path="result" element={<ProtectedRoute component={Result}/>} />
        <Route path="leaderboard" element={<ProtectedRoute component={Leaderboard}/>} />
        <Route path="game" element={<ProtectedRoute component={Game} socket={socket} />}/>
