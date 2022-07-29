@@ -61,7 +61,7 @@ export default function Game(props) {
         </div>
         <div className="contant d-flex flex-column align-items-center justify-content-evenly" style={{width:"100%",height:"88%"}}>
 
-            {cookies.config.camera? <div className="camera rounded-4 " style={{width:"90%",height:"30%",border:"solid 1px white",overflow:"hidden"}}>
+            {cookies.config.camera? <div className="camera rounded-4 " style={{width:"90%",height:"35%",border:"solid 1px white",overflow:"hidden"}}>
             <Webcam style={{width:"100%",height:"100%",objectFit: "cover"}} />
             </div> : <div></div>}
             {list.length > 0?
