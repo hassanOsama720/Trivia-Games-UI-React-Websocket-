@@ -85,22 +85,22 @@ export default function Game(props) {
                 <div className="answer d-flex rounded-3 align-items-center justify-content-evenly" style={{width:"90%", height:"40px",backgroundColor:"white",border:"solid 1px gold"}}>
                     <h5 className="m-0" style={{color:"#617C95",}}>1</h5>
                     <div className="line" style={{height:"60%",border:"1px solid #999"}}></div>
-                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[0].answer}</p>
+                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[0]}</p>
                 </div>
                 <div className="answer mt-1 d-flex rounded-3 align-items-center justify-content-evenly" style={{width:"90%", height:"40px",backgroundColor:"white",border:"solid 1px gold"}}>
                     <h5 className="m-0" style={{color:"#617C95",}}>2</h5>
                     <div className="line" style={{height:"60%",border:"1px solid #999"}}></div>
-                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[1].answer}</p>
+                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[1]}</p>
                 </div>
                 <div className="answer mt-1 d-flex rounded-3 align-items-center justify-content-evenly" style={{width:"90%", height:"40px",backgroundColor:"white",border:"solid 1px gold"}}>
                     <h5 className="m-0" style={{color:"#617C95",}}>3</h5>
                     <div className="line" style={{height:"60%",border:"1px solid #999"}}></div>
-                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[2].answer}</p>
+                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[2]}</p>
                 </div>
                 <div className="answer mt-1 d-flex rounded-3 align-items-center justify-content-evenly" style={{width:"90%", height:"40px",backgroundColor:"white",border:"solid 1px gold"}}>
                     <h5 className="m-0" style={{color:"#617C95",}}>4</h5>
                     <div className="line" style={{height:"60%",border:"1px solid #999"}}></div>
-                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[3].answer}</p>
+                    <p className="m-0" style={{width:"75%",color:"#617C95"}}>{list[current].answers[3]}</p>
                 </div>
 
             </div>

@@ -61,7 +61,7 @@ export default function Result() {
                 <h5 style={{color:"#617C95",width:"80%",textAlign:"center"}}>{list[current].question}</h5>
             </div>
             <div className="question d-flex  align-items-center justify-content-center rounded-4" style={{border:"1px solid white",width:"70%",height:"8%"}}>
-                <h5 style={{color:"white",width:"80%",textAlign:"center"}}>{list[current].answers[(list[current].correct-1)].answer}</h5>
+                <h5 style={{color:"white",width:"80%",textAlign:"center"}}>{list[current].answers[(list[current].correct-1)]}</h5>
             </div>
             <button  onClick={handelNext} className='w-50 rounded-pill' style={{height:"50px",border:"none",backgroundColor:"#617C95",color:"white",fontWeight:"bold",fontSize:"large",boxShadow:"#3b5057 0px 0px 7px 2px"}} name='signUp'>Next</button> 
             <div className="winners d-flex flex-wrap align-items-center justify-content-center rounded-4" style={{width:"90%",height:"60%",border:"1px solid white",overflowY:"scroll"}}>
