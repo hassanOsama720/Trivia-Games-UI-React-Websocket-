@@ -13,6 +13,9 @@ export default function Leaderboard() {
             <ArrowBackIcon></ArrowBackIcon>
             </div>
             <h3 style={{color:"#617C95"}}>Leaderboard</h3>
+            <div onClick={()=>{nav("/manage")}}>
+            <ArrowBackIcon></ArrowBackIcon>
+            </div>
         </div>
         <div className="contant d-flex flex-column align-items-center justify-content-evenly" style={{width:"100%",height:"92%"}}>
             {top.map((winner)=>{

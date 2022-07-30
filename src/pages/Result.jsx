@@ -43,7 +43,7 @@ export default function Result() {
         if(current == list.length-1){
             dis(resetCurrent());
             dis(resetQuestions());
-            nav("/manage")
+            nav("/leaderboard")
         }
         else{
             dis(changeCurrent());
