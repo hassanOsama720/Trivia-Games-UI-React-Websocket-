@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { addQuestion, getQuestions } from '../redux/slices/questionSlice'
 import LogoutIcon from '@mui/icons-material/Logout';
 
-export default function Manage() {
+export default function Manage(props) {
     const [config,setConfig] = useState({
         hashtag:"",
         num:0,
