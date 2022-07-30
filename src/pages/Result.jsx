@@ -19,7 +19,9 @@ export default function Result() {
     function handelConfig(){
         dis(resetCurrent());
         dis(resetQuestions());
-        nav("/manage")
+        nav("/manage");
+        dis(resetCurrent());
+        dis(resetQuestions());
     }
 
     function handelLeader(){

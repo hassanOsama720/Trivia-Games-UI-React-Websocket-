@@ -51,6 +51,7 @@ export default function Manage() {
     }
 
     function handelStart(){
+        props.socket.send(config.username); 
         setCookie("config",config)
         if(config.storedQue){
             let configs = {
@@ -75,10 +76,14 @@ export default function Manage() {
             <h3 style={{color:"#617C95"}}>Manage Question</h3>
         </div>
         <div className="container p-0 fluid h-75  d-flex flex-column justify-content-evenly align-items-center flex-wrap" style={{backgroundColor:"#122641"}}>
-            <div className="configs mb-4 d-flex justify-content-evenly align-items-center flex-column rounded-4" style={{width:"94%",height:"200px",backgroundColor:"white",border:"solid 2px gold"}}>
+            <div className="configs mb-4 d-flex justify-content-evenly align-items-center flex-column rounded-4" style={{width:"94%",height:"250px",backgroundColor:"white",border:"solid 2px gold"}}>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>Hashtag</h5>
                     <TextField value={config.hashtag} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,hashtag:e.target.value})}} />
+                </div>
+                <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
+                    <h5 style={{color:"#617C95"}}>UserName</h5>
+                    <TextField value={config.username} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,username:e.target.value})}} />
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>Que.Time</h5>

@@ -28,8 +28,11 @@ export default function Game(props) {
             setHig("15%")
         }
         props.socket.on("chat",(data)=>{
-            
-            dis(addTempFollower({name:data.nickname,comment:data.comment,image:data.profilePictureUrl}))
+            if(data.comment.includes(cookies.config.hashtag)){
+                if(data.comment.includes(`${list[current].correct}`)){
+                    dis(addTempFollower({name:data.nickname,comment:data.comment,image:data.profilePictureUrl}))
+                }
+            }
             // dis(addFollower({name:data.nickname,comment:data.comment,points:1}))
             
                 

@@ -20,18 +20,18 @@ import Landing from './pages/Landing';
 const socket = io("https://trivia1-api.herokuapp.com/")
 
 function App() {
-  useEffect(()=>{
-    socket.on("connect",()=>{
+  // useEffect(()=>{
+  //   socket.on("connect",()=>{
 
-      console.log(socket.connected) 
-    })
-  })
+  //     console.log(socket.connected) 
+  //   })
+  // })
 
   return (
     <Routes>
        <Route path="register" element={<Register />} />
        <Route path="login" element={<Login />} />
-       <Route path="manage" element={<ProtectedRoute component={Manage}/>} />
+       <Route path="manage" element={<ProtectedRoute component={Manage} socket={socket}/>} />
        <Route path="start" element={<ProtectedRoute component={Start}/>} />
        <Route path="games" element={<ProtectedRoute component={Games}/>} />
        <Route path="result" element={<ProtectedRoute component={Result}/>} />
