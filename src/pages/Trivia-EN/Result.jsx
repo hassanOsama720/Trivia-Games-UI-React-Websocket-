@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCurrent, resetCurrent, resetQuestions } from '../redux/slices/questionSlice';
-import logo from '../logo.svg';
-import { addFollower, addTempFollower, resetTempFollower, addTop } from '../redux/slices/followerSlice';
+import { changeCurrent, resetCurrent, resetQuestions } from '../../redux/slices/questionSlice';
+import { addFollower , resetTempFollower, addTop, resetFollower } from '../../redux/slices/followerSlice';
 
 export default function Result() {
     const list = useSelector(state=>state.questions.list)
@@ -16,12 +15,14 @@ export default function Result() {
     const newFollowers = useSelector(state=>state.followers.newList)
     const dis = useDispatch()
     const nav = useNavigate();
+
+    
     function handelConfig(){
         dis(resetCurrent());
         dis(resetQuestions());
+        dis(resetFollower());
+        dis(resetTempFollower());
         nav("/manage");
-        dis(resetCurrent());
-        dis(resetQuestions());
     }
 
     function handelLeader(){
@@ -71,11 +72,11 @@ export default function Result() {
 
                     return(
 
-                        <div className="winner m-2 d-flex flex-column align-items-center justify-content-center" style={{width:"80px",height:"100px",overflow:"hidden"}}>
+                        <div key={key} className="winner m-2 d-flex flex-column align-items-center justify-content-center" style={{width:"80px",height:"100px",overflow:"hidden"}}>
                             <div className="image rounded-circle" style={{width:"100%",height:"75%",border:"solid 1px #999",overflow:"hidden"}}>
                                 <img style={{width:"100%",height:"100%" ,objectFit: "cover"}} src={tempFollowers[key].image} alt="" />
                             </div>
-                            <p className="m-0" style={{color:"white"}}>{tempFollowers[key].name}</p>
+                            <p className="m-0" style={{color:"white",height:"23%",overflow:"hidden"}}>{tempFollowers[key].name}</p>
                         </div>
                     ) 
                 })

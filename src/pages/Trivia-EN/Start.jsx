@@ -3,9 +3,12 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
 
-export default function Start() {
+export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
     const nav = useNavigate()
+    function handelSocket (){
+        props.socket.send(cookies.config.username)
+    }
   return (
     <div className="container p-0 fluid vh-100 d-flex flex-column align-items-center  flex-wrap" style={{backgroundColor:"orange"}}>
         <div className="head w-100 mb-4 rounded-bottom d-flex justify-content-evenly align-items-center" style={{height:"8%",backgroundColor:"orange"}}>
@@ -16,7 +19,7 @@ export default function Start() {
             <Webcam style={{width:"100%",height:"100%",objectFit: "cover"}} />
             </div> : <div></div>}
             <div className=" w-100 flex-column d-flex justify-content-evenly align-items-center" style={{height:"55%"}}>
-                <h1 style={{fontSize:"70px"}} onClick={()=>{nav("/game")}}>ابدأ</h1>
+                <h1 style={{fontSize:"70px"}} onClick={()=>{nav("/game")}}>Start</h1>
                 <h5 style={{color:"#555"}}>لعبة سؤال و جواب</h5>
                 <h5 style={{color:"#555"}}>اول لعبة ثقافية تفاعلية مع المتابعين</h5>
                 <h5 style={{color:"#555"}}>لتشارك معنا اجب عن السؤال بالتعليقات</h5>
@@ -24,6 +27,8 @@ export default function Start() {
                 <h5 style={{color:"#555"}}>ثم رقم الجواب </h5>
                 <h5 style={{color:"#555"}}>اللعبه ستبدا قريبا</h5>
             </div>
+            <button  onClick={handelSocket} className='w-50 rounded-pill' style={{height:"50px",border:"none",backgroundColor:"#617C95",color:"white",fontWeight:"bold",fontSize:"large"}} name='signUp'>Reconnect</button> 
+
         </div>
     </div>
   )

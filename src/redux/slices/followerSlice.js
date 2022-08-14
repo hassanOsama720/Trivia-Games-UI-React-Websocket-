@@ -10,6 +10,7 @@ export const followerSlice = createSlice({
   },
   reducers: {
     addTempFollower: (state , action) => {
+     
       state.tempList={...state.tempList , [action.payload.name]:action.payload}
     },
     addFollower: (state , action) => {
@@ -20,8 +21,8 @@ export const followerSlice = createSlice({
         state.list = {...state.list , [action.payload.name]:action.payload}
       }
     },
-    addPoint: (state , action) => {
-      state.list = {...state.newList , [action.payload]:{...state.newList[action.payload] ,points:(state.newList[action.payload].points+1)}}
+    resetFollower: (state , action) => {
+      state.list = {}
     },
     addTop: (state , action) => {
       state.topList = action.payload
@@ -36,6 +37,6 @@ export const followerSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addFollower, addTempFollower,addTop, resetTempFollower, socketConnect, addNew } = followerSlice.actions
+export const { addFollower, addTempFollower,addTop, resetTempFollower, socketConnect, addNew ,resetFollower} = followerSlice.actions
 
 export default followerSlice.reducer

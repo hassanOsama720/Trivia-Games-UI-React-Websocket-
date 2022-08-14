@@ -17,7 +17,7 @@ export const questionSlice = createSlice({
       state.current += 1
     },
     resetCurrent: (state) => {
-      state.current += 0
+      state.current = 0
     },
     resetQuestions: (state) => {
       state.list = []

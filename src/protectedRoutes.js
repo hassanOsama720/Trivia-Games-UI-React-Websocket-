@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import { Navigate,  Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ProtectedRoute({ component: Component, ...restOfProps }) {
     const [cookies,setCookies] = useCookies("user")

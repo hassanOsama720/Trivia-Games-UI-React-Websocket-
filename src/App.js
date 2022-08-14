@@ -1,47 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import {
-  BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import Manage from './pages/Manage';
-import Start from './pages/Start';
+import Manage from './pages/Trivia-EN/Manage';
+import Start from './pages/Trivia-EN/Start';
 import Games from './pages/Games';
-import Game from './pages/Game';
-import Result from './pages/Result';
-import { io } from "socket.io-client";
-import { useEffect } from 'react';
-import Leaderboard from './pages/Leaderboard';
+import Game from './pages/Trivia-EN/Game';
+import Result from './pages/Trivia-EN/Result';
+import Leaderboard from './pages/Trivia-EN/Leaderboard';
 import ProtectedRoute from './protectedRoutes';
 import Landing from './pages/Landing';
-const socket = io("https://trivia1-api.herokuapp.com/")
+import ManageAR from './pages/Trivia-AR/ManageAR';
+import StartAR from './pages/Trivia-AR/StartAR';
+import GameAR from './pages/Trivia-AR/GameAR';
+import ResultAR from './pages/Trivia-AR/ResultAR';
+import LeaderboardAR from './pages/Trivia-AR/LeaderboardAR';
+
+import { SocketProvider } from "./components/SocketProvider";
+import { useCookies } from 'react-cookie';
+import { useEffect, useState } from 'react';
+import { useSocket } from "./components/SocketProvider";
+
 
 function App() {
-  // useEffect(()=>{
-  //   socket.on("connect",()=>{
-
-  //     console.log(socket.connected) 
-  //   })
-  // })
+  const socket = useSocket()
+  const [address,setAddress] = useState();
+  const [cookies,setCookies] = useCookies(['config'])
+  useEffect(()=>{
+    if(typeof(cookies.config) !== "undefined"){
+      setAddress(cookies.config.username)
+    }
+  },[cookies.config])
 
   return (
-    <Routes>
-       <Route path="register" element={<Register />} />
-       <Route path="login" element={<Login />} />
-       <Route path="manage" element={<ProtectedRoute component={Manage} socket={socket}/>} />
-       <Route path="start" element={<ProtectedRoute component={Start}/>} />
-       <Route path="games" element={<ProtectedRoute component={Games}/>} />
-       <Route path="result" element={<ProtectedRoute component={Result}/>} />
-       <Route path="leaderboard" element={<ProtectedRoute component={Leaderboard}/>} />
-       <Route path="game" element={<ProtectedRoute component={Game} socket={socket} />}/>
-       <Route path="/" element={<Landing />} />
-      {/* //  <Route path="game" element={<Game socket={socket} />} />
-      //  <Route path="result" element={<Result />} />
-      //  <Route path="leaderboard" element={<Leaderboard />} /> */}
-    </Routes>
+    <SocketProvider address={address}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="games" element={<ProtectedRoute component={Games}/>} />
+
+
+
+        <Route path="manage" element={<ProtectedRoute component={Manage} />} />
+        <Route path="start" element={<ProtectedRoute component={Start} />} />
+        <Route path="result" element={<ProtectedRoute component={Result}/>} />
+        <Route path="leaderboard" element={<ProtectedRoute component={Leaderboard}/>} />
+        <Route path="game" element={<ProtectedRoute component={Game}  />}/>
+        
+
+
+        <Route path="manageAR" element={<ProtectedRoute component={ManageAR} />} />
+        <Route path="startAR" element={<ProtectedRoute component={StartAR} />} />
+        <Route path="gameAR" element={<ProtectedRoute component={GameAR}  />}/>
+        <Route path="resultAR" element={<ProtectedRoute component={ResultAR}/>} />
+        <Route path="leaderboardAR" element={<ProtectedRoute component={LeaderboardAR}/>} />
+      </Routes>
+    </SocketProvider>
   );
 }
 
