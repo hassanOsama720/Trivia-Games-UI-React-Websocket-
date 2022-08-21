@@ -9,6 +9,7 @@ import { addQuestion, getQuestions } from '../../redux/slices/questionSlice'
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
+import { FacebookProvider, LoginButton } from 'react-facebook';
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -18,6 +19,7 @@ const responseFacebook = (response) => {
     .then((response)=>{console.log(response)})
     .catch((err)=>{console.log(err)})
 }
+
 
 export default function Manage(props) {
     const [config,setConfig] = useState({
@@ -81,6 +83,13 @@ export default function Manage(props) {
             nav("/start");
         }
     }
+    const handleResponse = (data) => {
+        console.log(data);
+      }
+     
+    const  handleError = (error) => {
+        this.setState({ error });
+      }
   return (
     <div className="container p-0 fluid min-vh-100 d-flex flex-column align-items-center  flex-wrap" style={{backgroundColor:"#122641"}}>
         <div className="head w-100 mb-4 rounded-bottom d-flex justify-content-evenly align-items-center" style={{height:"55px",backgroundColor:"white"}}>
@@ -107,13 +116,22 @@ export default function Manage(props) {
                     <TextField value={config.time} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,time:+e.target.value})}} />
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
-                <FacebookLogin
+                {/* <FacebookLogin
                     appId="588362626275865"
                     //autoLoad={true}
                     fields="name,email"
                     scope='pages_read_engagement,pages_show_list'
                     //onClick={(data)=>{console.log(data)}}
-                    callback={responseFacebook} />
+                    callback={responseFacebook} /> */}
+                    <FacebookProvider appId="588362626275865">
+                        <LoginButton
+                        scope="email,pages_read_engagement,pages_show_list"
+                        onCompleted={handleResponse}
+                        onError={handleError}
+                        >
+                        <span>Login via Facebook</span>
+                        </LoginButton>
+                    </FacebookProvider>
                 </div>
                 {config.storedQue?
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
