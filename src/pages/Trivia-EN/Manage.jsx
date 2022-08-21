@@ -16,7 +16,7 @@ const responseFacebook = (response) => {
   fields=access_token&
   access_token=${response.access_token}`)
     .then((response)=>{console.log(response)})
-    .catch((err)=>{console;e.log(err)})
+    .catch((err)=>{console.log(err)})
 }
 
 export default function Manage(props) {
