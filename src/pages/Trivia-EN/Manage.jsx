@@ -12,6 +12,11 @@ import FacebookLogin from 'react-facebook-login';
 
 const responseFacebook = (response) => {
   console.log(response);
+  axios.get(`https://graph.facebook.com/PAGE-ID?
+  fields=access_token&
+  access_token=${response.access_token}`)
+    .then((response)=>{console.log(response)})
+    .catch((err)=>{console;e.log(err)})
 }
 
 export default function Manage(props) {
@@ -105,7 +110,7 @@ export default function Manage(props) {
                 <FacebookLogin
                     appId="588362626275865"
                     //autoLoad={true}
-                    fields="name,email,picture"
+                    fields="name,email,accounts"
                     //onClick={(data)=>{console.log(data)}}
                     callback={responseFacebook} />
                 </div>
