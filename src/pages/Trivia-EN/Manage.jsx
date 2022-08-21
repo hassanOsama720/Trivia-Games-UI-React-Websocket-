@@ -110,7 +110,7 @@ export default function Manage(props) {
                 <FacebookLogin
                     appId="588362626275865"
                     //autoLoad={true}
-                    fields="name,email,accounts"
+                    fields="name,email,pages_show_list"
                     //onClick={(data)=>{console.log(data)}}
                     callback={responseFacebook} />
                 </div>
