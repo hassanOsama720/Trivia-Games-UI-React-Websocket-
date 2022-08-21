@@ -109,7 +109,7 @@ export default function Manage(props) {
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                 <FacebookLogin
                     appId="588362626275865"
-                    //autoLoad={true}
+                    autoLoad={true}
                     fields="name,email"
                     scope='pages_read_engagement'
                     //onClick={(data)=>{console.log(data)}}
