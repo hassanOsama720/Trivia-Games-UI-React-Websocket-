@@ -135,7 +135,7 @@ export default function Manage(props) {
                     </FacebookProvider> */}
                     <FacebookLogin
                         appId="588362626275865"
-                        scope='pages_read_engagement,pages_show_list'
+                        scope='pages_read_engagement'
                         onSuccess={(response) => {
                             console.log('Login Success!', response);
                         }}
