@@ -125,7 +125,7 @@ export default function Manage(props) {
                     callback={responseFacebook} /> */}
                     <FacebookProvider appId="588362626275865">
                         <LoginButton
-                        scope="pages_read_engagement,pages_show_list"
+                        scope="pages_read_engagement"
                         onCompleted={handleResponse}
                         onError={handleError}
                         >
