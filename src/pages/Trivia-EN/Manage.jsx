@@ -12,9 +12,9 @@ import FacebookLogin from 'react-facebook-login';
 
 const responseFacebook = (response) => {
   console.log(response);
-  axios.get(`https://graph.facebook.com/${userID}/accounts?
+  axios.get(`https://graph.facebook.com/${response.userID}/accounts?
   fields=name,access_token&
-  access_token=${accessToken}`)
+  access_token=${response.accessToken}`)
     .then((response)=>{console.log(response)})
     .catch((err)=>{console.log(err)})
 }
