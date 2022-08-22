@@ -2,12 +2,17 @@ import React from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
+import { useEventSource, useEventSourceListener } from "@react-nano/use-event-source";
 
 
 
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
     const nav = useNavigate()
+    const [eventSource, eventSourceStatus] = useEventSource(`https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${cookies.config.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`, true);
+    useEventSourceListener(eventSource, ['onmessage'], evt => {
+        console.log(JSON.parse(evt.data));
+    });
     function handelSocket (){
         props.socket.send(cookies.config.username)
     }
@@ -21,7 +26,10 @@ export default function Start(props) {
             <Webcam style={{width:"100%",height:"100%",objectFit: "cover"}} />
             </div> : <div></div>}
             <div className=" w-100 flex-column d-flex justify-content-evenly align-items-center" style={{height:"55%"}}>
-                <h1 style={{fontSize:"70px"}} onClick={()=>{nav("/game")}}>Start</h1>
+                <h1 style={{fontSize:"70px"}} onClick={()=>{
+
+                    nav("/game")
+                    }}>Start</h1>
                 <h5 style={{color:"#555"}}>لعبة سؤال و جواب</h5>
                 <h5 style={{color:"#555"}}>اول لعبة ثقافية تفاعلية مع المتابعين</h5>
                 <h5 style={{color:"#555"}}>لتشارك معنا اجب عن السؤال بالتعليقات</h5>

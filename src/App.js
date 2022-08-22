@@ -33,18 +33,14 @@ function App() {
   const [cookies,setCookies] = useCookies(['config'])
   useEffect(()=>{
     if(typeof(cookies.config) !== "undefined"){
-      if(cookies.config.username){
+      
         setAddress(cookies.config.username)
-      }
-      if(cookies.config.videoId){
-        setVideoId(cookies.config.videoId)
-        setAccess(cookies.config.access_token)
-      }
+      
     }
   },[cookies.config])
 
   return (
-    <SocketProvider address={address} videoId={videoId} access_token={access}>
+    <SocketProvider address={address}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />
