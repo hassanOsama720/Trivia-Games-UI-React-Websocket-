@@ -43,20 +43,17 @@ export default function Game(props) {
             corr = "٤"
         }
 
-        // socket.on("chat",(data)=>{
-        //     console.log(data.comment)
-        //     if(data.comment.includes(cookies.config.hashtag)){
-        //         if(data.comment.includes(`${list[current].correct}`) || data.comment.includes(corr)){
-        //             dis(addTempFollower({name:data.nickname,comment:data.comment,image:data.profilePictureUrl}))
-        //         }
-        //     }
+        socket.on("chat",(data)=>{
+            console.log(data.comment)
+            if(data.comment.includes(cookies.config.hashtag)){
+                if(data.comment.includes(`${list[current].correct}`) || data.comment.includes(corr)){
+                    dis(addTempFollower({name:data.nickname,comment:data.comment,image:data.profilePictureUrl}))
+                }
+            }
             
             
                 
-        // },[socket]);
-        socket.onmessage = function(event) {
-            console.log(JSON.parse(event.data));
-          }
+        },[socket]);
          return ()=>{socket.off()}    
     })
     

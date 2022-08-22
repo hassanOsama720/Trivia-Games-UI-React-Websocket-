@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
-import { useSocket } from "../../components/SocketProvider";
+
 
 
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
-    const socket = useSocket();
     const nav = useNavigate()
     function handelSocket (){
         props.socket.send(cookies.config.username)
     }
-    useEffect(()=>{
-        socket.onmessage = function(event) {
-            console.log(JSON.parse(event.data));
-          }
-    })
   return (
     <div className="container p-0 fluid vh-100 d-flex flex-column align-items-center  flex-wrap" style={{backgroundColor:"orange"}}>
         <div className="head w-100 mb-4 rounded-bottom d-flex justify-content-evenly align-items-center" style={{height:"8%",backgroundColor:"orange"}}>
