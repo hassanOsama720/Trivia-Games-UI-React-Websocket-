@@ -17,7 +17,31 @@ const responseFacebook = (response) => {
   axios.get(`https://graph.facebook.com/104670745702316?
   fields=access_token&
   access_token=${response.accessToken}`)
-    .then((response)=>{console.log(response)})
+    .then((response)=>{
+        console.log(response)
+        const axios = require("axios");
+
+const encodedParams = new URLSearchParams();
+encodedParams.append("liveVideoId", "395095602765900");
+encodedParams.append("accessToken", response.data.access_token);
+
+const options = {
+  method: 'POST',
+  url: 'https://facebookliveapidimasv1.p.rapidapi.com/getLiveVideoComments',
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded',
+    'X-RapidAPI-Key': '53881c17cfmshc8d405e5c1eaf50p196c67jsn3ca8b552a2df',
+    'X-RapidAPI-Host': 'FacebookLiveAPIdimasV1.p.rapidapi.com'
+  },
+  data: encodedParams
+};
+
+axios.request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
+    })
     .catch((err)=>{console.log(err)})
 }
 
