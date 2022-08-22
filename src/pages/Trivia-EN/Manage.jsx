@@ -88,7 +88,7 @@ export default function Manage(props) {
     access_token=${response.accessToken}`)
         .then((response)=>{
             console.log(response)
-            createEventSource(response.access_token);
+            createEventSource(response.data.access_token);
             setConfig({...config,access_token:response.data.access_token})
         })
         .catch((err)=>{console.log(err)})
