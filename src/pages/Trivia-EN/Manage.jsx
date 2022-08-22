@@ -111,7 +111,7 @@ export default function Manage(props) {
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>UserName</h5>
-                    <TextField value={config.username} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,videoId:e.target.value})}} />
+                    <TextField value={config.username} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,username:e.target.value})}} />
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>Que.Time</h5>

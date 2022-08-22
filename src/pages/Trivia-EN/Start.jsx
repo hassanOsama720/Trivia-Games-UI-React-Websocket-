@@ -9,7 +9,7 @@ import { useEventSource, useEventSourceListener } from "@react-nano/use-event-so
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
     const nav = useNavigate()
-    const [eventSource, eventSourceStatus] = useEventSource(`https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${cookies.config.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`, true);
+    const [eventSource, eventSourceStatus] = useEventSource(`https://streaming-graph.facebook.com/458229709821080/live_comments?access_token=${cookies.config.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`, true);
     useEventSourceListener(eventSource, ['onmessage'], evt => {
         console.log(JSON.parse(evt.data));
     });
