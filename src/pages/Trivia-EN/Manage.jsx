@@ -19,28 +19,12 @@ const responseFacebook = (response) => {
   access_token=${response.accessToken}`)
     .then((response)=>{
         console.log(response)
-        const axios = require("axios");
-
-const encodedParams = new URLSearchParams();
-encodedParams.append("liveVideoId", "395095602765900");
-encodedParams.append("accessToken", response.data.access_token);
-
-const options = {
-  method: 'POST',
-  url: 'https://facebookliveapidimasv1.p.rapidapi.com/getLiveVideoComments',
-  headers: {
-    'content-type': 'application/x-www-form-urlencoded',
-    'X-RapidAPI-Key': '53881c17cfmshc8d405e5c1eaf50p196c67jsn3ca8b552a2df',
-    'X-RapidAPI-Host': 'FacebookLiveAPIdimasV1.p.rapidapi.com'
-  },
-  data: encodedParams
-};
-
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+        var source = new EventSource(
+            `https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${response.data.access_token}&comment_rate=one_per_two_seconds&fields=from{name,id},message`);
+            
+            source.onmessage = function(event) {
+              console.log(event.data);
+            };
     })
     .catch((err)=>{console.log(err)})
 }
