@@ -41,7 +41,7 @@ function App() {
 
   return (
     <SocketProvider address={address}>
-      <EventContext.Provider>
+      <EventContext.Provider value={""}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />
