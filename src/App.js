@@ -28,15 +28,23 @@ import { useSocket } from "./components/SocketProvider";
 function App() {
   const socket = useSocket()
   const [address,setAddress] = useState();
+  const [videoId,setVideoId] = useState();
+  const [access,setAccess] = useState();
   const [cookies,setCookies] = useCookies(['config'])
   useEffect(()=>{
     if(typeof(cookies.config) !== "undefined"){
-      setAddress(cookies.config.username)
+      if(cookies.config.username){
+        setAddress(cookies.config.username)
+      }
+      if(cookies.config.videoId){
+        setVideoId(cookies.config.videoId)
+        setAccess(cookies.config.access_token)
+      }
     }
   },[cookies.config])
 
   return (
-    <SocketProvider address={address}>
+    <SocketProvider address={address} videoId={videoId} access_token={access}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />

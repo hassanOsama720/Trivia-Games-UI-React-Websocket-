@@ -11,22 +11,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
 
 
-const responseFacebook = (response) => {
-  console.log(response);
-  axios.get(`https://graph.facebook.com/104670745702316?
-  fields=access_token&
-  access_token=${response.accessToken}`)
-    .then((response)=>{
-        console.log(response)
-        var source = new EventSource(
-            `https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${response.data.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`);
-            
-            source.onmessage = function(event) {
-              console.log(JSON.parse(event.data));
-            };
-    })
-    .catch((err)=>{console.log(err)})
-}
+
 
 
 export default function Manage(props) {
@@ -72,10 +57,6 @@ export default function Manage(props) {
     }
 
     function handelStart(){
-        //props.socket.on("tik",(data)=>{
-            //console.log(data)
-        //})
-        //props.socket.send(config.username); 
         setCookie("config",config)
         if(config.storedQue){
             let configs = {
@@ -98,6 +79,19 @@ export default function Manage(props) {
     const  handleError = (error) => {
         this.setState({ error });
       }
+
+    const responseFacebook = (response) => {
+    console.log(response);
+    axios.get(`https://graph.facebook.com/104670745702316?
+    fields=access_token&
+    access_token=${response.accessToken}`)
+        .then((response)=>{
+            console.log(response)
+            setConfig({...config,access_token:response.data.access_token})
+        })
+        .catch((err)=>{console.log(err)})
+    }
+
   return (
     <div className="container p-0 fluid min-vh-100 d-flex flex-column align-items-center  flex-wrap" style={{backgroundColor:"#122641"}}>
         <div className="head w-100 mb-4 rounded-bottom d-flex justify-content-evenly align-items-center" style={{height:"55px",backgroundColor:"white"}}>
@@ -117,7 +111,7 @@ export default function Manage(props) {
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>UserName</h5>
-                    <TextField value={config.username} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,username:e.target.value})}} />
+                    <TextField value={config.username} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,videoId:e.target.value})}} />
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
                     <h5 style={{color:"#617C95"}}>Que.Time</h5>
