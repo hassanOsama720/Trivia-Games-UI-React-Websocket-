@@ -121,7 +121,7 @@ export default function Manage(props) {
                     appId="588362626275865"
                     //autoLoad={true}
                     fields="name,email"
-                    scope='pages_read_engagement,pages_show_list'
+                    scope='pages_read_engagement,pages_show_list,user_videos'
                     //onClick={(data)=>{console.log(data)}}
                     callback={responseFacebook} />
                     {/* <FacebookProvider appId="588362626275865">
