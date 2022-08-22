@@ -9,7 +9,7 @@ import { addQuestion, getQuestions } from '../../redux/slices/questionSlice'
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
-
+import { createEventSource } from "../../components/eventSource";
 
 
 
@@ -57,6 +57,7 @@ export default function Manage(props) {
     }
 
     function handelStart(){
+        createEventSource(config.access_token);
         setCookie("config",config)
         if(config.storedQue){
             let configs = {

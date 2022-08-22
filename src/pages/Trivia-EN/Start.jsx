@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
-import { useEventSource, useEventSourceListener } from "@react-nano/use-event-source";
+import { useEventSource } from "../../components/eventSource";
 
 
 
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
     const nav = useNavigate()
-    const [eventSource, eventSourceStatus] = useEventSource(`https://streaming-graph.facebook.com/458229709821080/live_comments?access_token=${cookies.config.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`, true);
-    useEventSourceListener(eventSource, ['onmessage'], evt => {
-        console.log(JSON.parse(evt.data));
-    });
+        let source = useEventSource();
+        source.onmessage((event)=>{
+            console.log(JSON.parse(event.data))
+        })
     function handelSocket (){
         props.socket.send(cookies.config.username)
     }
