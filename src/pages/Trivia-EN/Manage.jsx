@@ -19,11 +19,11 @@ const responseFacebook = (response) => {
     .then((response)=>{
         console.log(response)
         var source = new EventSource(
-            `https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${response.data.access_token}&comment_rate=ten_per_second&fields={name,id,message}`);
+            `https://streaming-graph.facebook.com/395095602765900/live_comments?access_token=${response.data.access_token}&comment_rate=ten_per_second&fields=from{name,id},message`);
             
             source.onmessage = function(event) {
-              console.log(event.data.message);
-              console.log(typeof(event.data));
+              console.log(event.data);
+              console.log(JSON.parse(event.data));
             };
     })
     .catch((err)=>{console.log(err)})
