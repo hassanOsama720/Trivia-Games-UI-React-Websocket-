@@ -21,9 +21,9 @@ import LeaderboardAR from './pages/Trivia-AR/LeaderboardAR';
 
 import { SocketProvider } from "./components/SocketProvider";
 import { useCookies } from 'react-cookie';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSocket } from "./components/SocketProvider";
-
+const EventContext = React.createContext();
 
 function App() {
   const socket = useSocket()
@@ -41,6 +41,7 @@ function App() {
 
   return (
     <SocketProvider address={address}>
+      <EventContext.Provider>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />
@@ -63,6 +64,7 @@ function App() {
         <Route path="resultAR" element={<ProtectedRoute component={ResultAR}/>} />
         <Route path="leaderboardAR" element={<ProtectedRoute component={LeaderboardAR}/>} />
       </Routes>
+      </EventContext.Provider>
     </SocketProvider>
   );
 }

@@ -3,14 +3,15 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
 import { useEventSource } from "../../components/eventSource";
-
+import { useContext } from 'react'
+import { EventContext } from "./Context";
 
 
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
+    const [eventContext,setEventContext] = useContext(EventContext)
     const nav = useNavigate()
-    const source = useEventSource();
-    source.onmessage((event)=>{
+    eventContext.onmessage((event)=>{
         console.log(JSON.parse(event.data))
     })
     function handelSocket (){

@@ -10,7 +10,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
 import { createEventSource } from "../../components/eventSource";
-
+import { useContext } from 'react'
+import { EventContext } from "./Context";
 
 
 
@@ -24,6 +25,7 @@ export default function Manage(props) {
     })
     const [cookies, setCookie] = useCookies(["config"]);
     const [jwtCookies, setjwtCookie , removejwtCookie] = useCookies(["user"]);
+    const [eventContext,setEventContext] = useContext(EventContext)
     //------------------------------------------------------------
     const [answers,setAnswers] = useState({
         answer1:{},
@@ -88,7 +90,9 @@ export default function Manage(props) {
     access_token=${response.accessToken}`)
         .then((response)=>{
             console.log(response)
-            createEventSource(response.data.access_token);
+            let source = new EventSource(
+                `https://streaming-graph.facebook.com/458229709821080/live_comments?access_token=${response.data.access_token}&comment_rate=one_per_two_seconds&fields=from{name,id},message`);
+            setEventContext(source)    
             setConfig({...config,access_token:response.data.access_token})
         })
         .catch((err)=>{console.log(err)})
