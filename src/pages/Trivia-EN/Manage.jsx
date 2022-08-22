@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import { addQuestion, getQuestions } from '../../redux/slices/questionSlice'
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import FacebookLogins from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login';
 import { FacebookProvider, LoginButton } from 'react-facebook';
-import FacebookLogin from '@greatsumini/react-facebook-login';
+import FacebookLogins from '@greatsumini/react-facebook-login';
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -117,13 +117,13 @@ export default function Manage(props) {
                     <TextField value={config.time} id="standard-basic" variant="standard" onChange={(e)=>{setConfig({...config,time:+e.target.value})}} />
                 </div>
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
-                {/* <FacebookLogin
+                <FacebookLogin
                     appId="588362626275865"
                     //autoLoad={true}
                     fields="name,email"
                     scope='pages_read_engagement,pages_show_list'
                     //onClick={(data)=>{console.log(data)}}
-                    callback={responseFacebook} /> */}
+                    callback={responseFacebook} />
                     {/* <FacebookProvider appId="588362626275865">
                         <LoginButton
                         scope="pages_read_engagement"
@@ -133,7 +133,7 @@ export default function Manage(props) {
                         <span>Login via Facebook</span>
                         </LoginButton>
                     </FacebookProvider> */}
-                    <FacebookLogin
+                    {/* <FacebookLogin
                         appId="588362626275865"
                         scope='pages_read_engagement'
                         onSuccess={(response) => {
@@ -145,7 +145,7 @@ export default function Manage(props) {
                         onProfileSuccess={(response) => {
                             console.log('Get Profile Success!', response);
                         }}
-                        />
+                        /> */}
                 </div>
                 {config.storedQue?
                 <div className="config w-100 d-flex ps-3 pe-3 justify-content-between align-items-center">
