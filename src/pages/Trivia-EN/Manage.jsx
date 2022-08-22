@@ -9,7 +9,7 @@ import { addQuestion, getQuestions } from '../../redux/slices/questionSlice'
 import LogoutIcon from '@mui/icons-material/Logout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
-import { createEventSource } from "../../components/eventSource";
+
 
 
 
@@ -57,7 +57,6 @@ export default function Manage(props) {
     }
 
     function handelStart(){
-        createEventSource(config.access_token);
         setCookie("config",config)
         if(config.storedQue){
             let configs = {
@@ -88,6 +87,11 @@ export default function Manage(props) {
     access_token=${response.accessToken}`)
         .then((response)=>{
             console.log(response)
+            let source = new EventSource(
+                `https://streaming-graph.facebook.com/{live-video-id}/live_comments?access_token=${response.access_token}&comment_rate=one_per_two_seconds&fields=from{name,id},message`);
+                source.onmessage((event)=>{
+                    console.log(JSON.parse(event.data))
+                })
             setConfig({...config,access_token:response.data.access_token})
         })
         .catch((err)=>{console.log(err)})

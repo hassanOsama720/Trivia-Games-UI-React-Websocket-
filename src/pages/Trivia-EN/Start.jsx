@@ -9,10 +9,8 @@ import { useEventSource } from "../../components/eventSource";
 export default function Start(props) {
     const [cookies, setCookie , removeCookie] = useCookies(["config"]);
     const nav = useNavigate()
-        let source = useEventSource();
-        source.onmessage((event)=>{
-            console.log(JSON.parse(event.data))
-        })
+        
+        
     function handelSocket (){
         props.socket.send(cookies.config.username)
     }
