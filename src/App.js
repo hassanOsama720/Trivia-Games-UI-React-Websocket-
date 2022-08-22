@@ -23,7 +23,8 @@ import { SocketProvider } from "./components/SocketProvider";
 import { useCookies } from 'react-cookie';
 import React, { useEffect, useState } from 'react';
 import { useSocket } from "./components/SocketProvider";
-const EventContext = React.createContext();
+import { EventContext } from "./components/eventSource";
+
 
 function App() {
   const socket = useSocket()

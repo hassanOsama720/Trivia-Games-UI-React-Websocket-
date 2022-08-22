@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Webcam from "react-webcam";
 import { useEventSource } from "../../components/eventSource";
 import { useContext } from 'react'
-import { EventContext } from "./Context";
+import { EventContext } from "../../components/eventSource";
 
 
 export default function Start(props) {

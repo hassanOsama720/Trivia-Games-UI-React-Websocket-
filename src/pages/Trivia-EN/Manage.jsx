@@ -11,7 +11,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FacebookLogin from 'react-facebook-login';
 import { createEventSource } from "../../components/eventSource";
 import { useContext } from 'react'
-import { EventContext } from "./Context";
+import { EventContext } from "../../components/eventSource";
 
 
 
